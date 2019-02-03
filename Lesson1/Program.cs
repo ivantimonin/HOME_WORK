@@ -16,7 +16,11 @@ namespace Lesson1
             Console.WriteLine("3. Сделать приведение типов");
             Console.WriteLine("4. Запросить ввод с консоли: Имя, Фамилия, Отчество");
             Console.WriteLine("5. Калькулятор");
-            Console.WriteLine("Введите 2 или 3 или 4 или 5...");
+            Console.WriteLine("6. Доп задание. Определить является ли год високосным.");
+            Console.WriteLine("7. Доп задание. Какой четверти декартовых координат принадлежит точка.");
+            Console.WriteLine("8. Доп задание. Попадает ли точка в окружность с центром(0; 0)");
+            Console.WriteLine("9. Доп задание. Попадает ли точка в окружность с произвольным центром");
+            Console.WriteLine("Введите 2 или 3 или 4 или 5 или 6 или 7 или 8 или 9...");
 
             int choice = Convert.ToInt32(Console.ReadLine());
             switch (choice)
@@ -25,8 +29,11 @@ namespace Lesson1
                 case 3: Type_to_type(); break;
                 case 4: SNP(); break;
                 case 5: Calculation(); break;
+                case 6: Tall_Year(); ; break;
+                case 7: Def_qr(); ; break;
+                case 8: Def_circle(); break;
+                case 9: Def_circle_pro(); ; break;
             }
-
             Console.ReadKey();
         }
 
@@ -146,6 +153,87 @@ namespace Lesson1
             if (sign == ('-'))
             {
                 Console.WriteLine($"Ответ:{a}-{b} = {a - b}");
+            }
+        }
+        static void Tall_Year()
+        {
+            Console.WriteLine("Введите год");
+            int year = Convert.ToInt32(Console.ReadLine());
+            if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
+            {
+                Console.WriteLine("Год высокосный");
+            }
+            else
+            {
+                Console.WriteLine("Неа), год не высокосный");
+            }
+        }
+
+        static void Def_qr()
+        {
+            Console.WriteLine("Введите координату x");
+            double x = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите координату y");
+            double y = Convert.ToDouble(Console.ReadLine());
+            if (x > 0 && y > 0)
+            {
+                Console.WriteLine("Точка находится в первом квадранте");
+            }
+            if (x < 0 && y > 0)
+            {
+                Console.WriteLine("Точка находится во втором квадранте");
+            }
+            if (x < 0 && y < 0)
+            {
+                Console.WriteLine("Точка находится в третьем квадранте");
+            }
+            if (x > 0 && y < 0)
+            {
+                Console.WriteLine("Точка находится в четвертом квадранте");
+            }
+            if (x == 0 | y == 0)
+            {
+                Console.WriteLine("Точка находится на одной из осей");
+            }
+        }
+
+        static void Def_circle()
+        {
+            Console.WriteLine("Радиус окружности");
+            double R = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите координату x");
+            double x = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите координату y");
+            double y = Convert.ToDouble(Console.ReadLine());
+            if (Math.Pow(x, 2) + Math.Pow(y, 2) <= Math.Pow(R, 2))
+            {
+                Console.WriteLine("Точка находится в окружности");
+            }
+            else
+            {
+                Console.WriteLine("Точка находится вне окружности");
+            }
+        }
+
+        static void Def_circle_pro()
+        {
+            Console.WriteLine("Введите координату x_0 центра круга");
+            double x_0 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите координату y_0 центра круга");
+            double y_0 = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Радиус окружности");
+            double R = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите координату x");
+            double x = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Введите координату y");
+            double y = Convert.ToDouble(Console.ReadLine());
+            if (Math.Pow(x - x_0, 2) + Math.Pow(y - y_0, 2) <= Math.Pow(R, 2))
+            {
+                Console.WriteLine("Точка находится в окружности");
+            }
+            else
+            {
+                Console.WriteLine("Точка находится вне окружности");
             }
         }
     }
