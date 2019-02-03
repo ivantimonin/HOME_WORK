@@ -93,7 +93,6 @@ namespace Lesson2
                 {
                     Console.WriteLine("Число не угадано");
                 }
-
             }
         }
 
