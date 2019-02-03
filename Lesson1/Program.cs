@@ -110,7 +110,6 @@ namespace Lesson1
             Console.WriteLine($"j)Тип данных {j_0_int} был: {j_0_int.GetType()}");
             char j_1_char = (char)j_0_int;
             Console.WriteLine($"j)Тип данных {j_1_char} стал: {j_1_char.GetType()}");
-
         }
         static void SNP()
         {
