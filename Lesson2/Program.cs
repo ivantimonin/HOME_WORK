@@ -16,7 +16,9 @@ namespace Lesson2
             Console.WriteLine("3.Игра угадайка.");
             Console.WriteLine("4.Определить из каких цифр состоит число.");
             Console.WriteLine("5.Перевернуть число.");
-            Console.WriteLine("Введите 1 или 2 или 3 или 4 или 5...");
+            Console.WriteLine("6.Найти сумму чётных цифр натурального числа NEW.");
+            Console.WriteLine("7.Определить из каких цифр состоит число NEW.");
+            Console.WriteLine("Введите 1 или 2 или 3 или 4 или 5 или 6 или 7...");
             int choice = Convert.ToInt32(Console.ReadLine());
             switch (choice)
             {
@@ -25,6 +27,8 @@ namespace Lesson2
                 case 3: Guess_the_number(); break;
                 case 4: Deter_number(); break;
                 case 5: Rotate_number(); break;
+                case 6: Find_sum_new(); break;
+                case 7: Deter_number_new(); break;                    
             }
             Console.Read();
         }
@@ -53,16 +57,18 @@ namespace Lesson2
             int a_mul_2 = Convert.ToInt32(Console.ReadLine());
             int rezult_mul = 0;
             int i = 1;
-            while (i <= Math.Abs(a_mul_1))
+            int sign = 1;
+            if (a_mul_1<0 && a_mul_2>0 || a_mul_1>0 && a_mul_2 < 0)
+            {
+                sign = -1;
+            }
+            while (i <=Math.Abs(a_mul_1))
             {
                 rezult_mul += Math.Abs(a_mul_2);
                 i++;
             }
-            if (a_mul_1 < 0 && a_mul_2 > 0 || a_mul_1 > 0 && a_mul_2 < 0)
-            {
-                rezult_mul = -rezult_mul;
-            }
-            Console.WriteLine($"Результат:{rezult_mul}");
+            
+            Console.WriteLine($"Результат:{sign*rezult_mul}");
         }
 
         static void Guess_the_number()
@@ -75,19 +81,20 @@ namespace Lesson2
             string user_input;
             bool right_enter = false;
             int input_number;
-            while (true)
+            bool isGame = true;
+            while (isGame == true)
             {
                 user_input = Console.ReadLine();
                 right_enter = int.TryParse(user_input, out input_number);
                 if (right_enter == true && input_number == random_number)
                 {
                     Console.WriteLine("Число угадано!)");
-                    break;
+                    isGame = false;
                 }
                 if (user_input == "выход")
                 {
                     Console.WriteLine("Игра завершена");
-                    break;
+                    isGame = false;
                 }
                 else
                 {
@@ -126,6 +133,39 @@ namespace Lesson2
             {
                 Console.Write(array[i]);
             }
+        }
+
+        static void Find_sum_new()
+        {
+            Console.WriteLine("Ведите любое натуральное число");
+            int number = Convert.ToInt16(Console.ReadLine());
+            int numeral_of_number;
+            int sum_of_num = 0;
+            int tag = 1;
+            while (number % tag != number)
+            {
+                numeral_of_number = number / tag % 10;                
+                tag *= 10;
+                if (numeral_of_number % 2 == 0)
+                {
+                    sum_of_num += numeral_of_number;
+                }
+            }
+            Console.WriteLine($"Сумма четных чисел введенного числа {sum_of_num}");
+        }
+
+        static void Deter_number_new()
+        {
+            Console.WriteLine("Ведите любое натуральное число");
+            int number = Convert.ToInt16(Console.ReadLine());
+            int numeral_of_number;
+            int tag = 1;
+            while (number % tag != number)
+            {
+                numeral_of_number = number / tag % 10;
+                tag *= 10;
+                Console.Write($"{numeral_of_number};");
+            }           
         }
     }
 }
