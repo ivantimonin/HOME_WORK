@@ -18,7 +18,8 @@ namespace Lesson2
             Console.WriteLine("5.Перевернуть число.");
             Console.WriteLine("6.Найти сумму чётных цифр натурального числа NEW.");
             Console.WriteLine("7.Определить из каких цифр состоит число NEW.");
-            Console.WriteLine("Введите 1 или 2 или 3 или 4 или 5 или 6 или 7...");
+            Console.WriteLine("8.Сортировка массива");
+            Console.WriteLine("Введите 1 или 2 или 3 или 4 или 5 или 6 или 7 или 8...");
             int choice = Convert.ToInt32(Console.ReadLine());
             switch (choice)
             {
@@ -28,7 +29,8 @@ namespace Lesson2
                 case 4: Deter_number(); break;
                 case 5: Rotate_number(); break;
                 case 6: Find_sum_new(); break;
-                case 7: Deter_number_new(); break;                    
+                case 7: Deter_number_new(); break;
+                case 8: Sort_array(); break;
             }
             Console.Read();
         }
@@ -167,6 +169,32 @@ namespace Lesson2
                 Console.Write($"{numeral_of_number};");
             }           
         }
+
+        static void Sort_array()
+        {
+            int[] array = { 1,-10,0,3,-11 ,3, -8, 25, -11};
+            Console.WriteLine($"До сортировки:");
+            foreach (int element in array)
+            {
+                Console.WriteLine($" {element};");
+            }
+            int exchange_variable;
+            for (int i = 0; i < array.Length - 1; i++)
+                for (int j = 0+i; j < array.Length-1; j++)
+                {
+                    if (array[i] > array[j + 1])
+                    {
+                        exchange_variable = array[i];
+                        array[i] = array[j + 1];
+                        array[j + 1] = exchange_variable;
+                    }
+                }
+            Console.WriteLine($"После сортировки:");
+            foreach (int element in array)
+            {
+                Console.WriteLine($"{element};");
+            }
+        }        
     }
 }
 
