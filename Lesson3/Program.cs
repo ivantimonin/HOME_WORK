@@ -448,7 +448,7 @@ namespace Lesson3
                     {
                         i = 8;
                     }
-                    if (matrix[0, 1] == matrix[0, 2] && matrix[0, 3] != '0')
+                    if (matrix[0, 1] == matrix[0, 2] && matrix[0, 0] != '0')
                     {
                         i = 7;
                     }
