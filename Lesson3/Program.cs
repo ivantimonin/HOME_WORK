@@ -20,6 +20,8 @@ namespace Lesson3
             Console.WriteLine("5 - Найти N-тое простое число");
             Console.WriteLine("6 - Значение суммы по столбцам и по строчкам");
             Console.WriteLine("7 - *Игра крестики нолики для двоих");
+            Console.WriteLine("8 - **Игра крестики нолики c компьютером");
+
             int choice = Convert.ToInt32(Console.ReadLine());            
             switch (choice)
             {
@@ -30,6 +32,7 @@ namespace Lesson3
                 case 5: Simple_number(); break;
                 case 6: Sum_row_line(); break;
                 case 7: Tic_tac_toe(); break;
+                case 8: Tic_tac_toe_with_comp(); break;
             }
             Console.Read();
         }
@@ -365,6 +368,191 @@ namespace Lesson3
                     {
                         win_or_lose = true;
                     }                    
+                    return win_or_lose;
+                }
+            }
+        }
+
+        static void Tic_tac_toe_with_comp()
+        {
+            Console.Clear();
+            char[,] matrix = new char[3, 3];
+            matrix[0, 0] = '7';
+            matrix[0, 1] = '8';
+            matrix[0, 2] = '9';
+            matrix[1, 0] = '4';
+            matrix[1, 1] = '5';
+            matrix[1, 2] = '6';
+            matrix[2, 0] = '1';
+            matrix[2, 1] = '2';
+            matrix[2, 2] = '3';
+            write_sign(matrix);
+            void write_sign(char[,] matrix_0)
+            {
+                Console.Clear();
+                Console.WriteLine("Игра крестики-нолики c компьютером");
+                Console.WriteLine($"   {matrix_0[0, 0]}|{matrix_0[0, 1]}|{matrix_0[0, 2]}");
+                Console.WriteLine("   ------");
+                Console.WriteLine($"   {matrix_0[1, 0]}|{matrix_0[1, 1]}|{matrix_0[1, 2]}");
+                Console.WriteLine("   ------");
+                Console.WriteLine($"   {matrix_0[2, 0]}|{matrix_0[2, 1]}|{matrix_0[2, 2]}");
+            }
+            bool win_or_lose = false;
+            int number_moves = 0;
+            char [] coord_players=new char [9];
+            int index = 0;
+            while (win_or_lose == false)
+            {
+                Console.WriteLine("Игрок 1: введите координату");
+                char coord_player1 = Convert.ToChar(Console.ReadLine());
+                coord_players[index] = coord_player1;
+                index++;
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (matrix[i, j] == coord_player1)
+                        {
+                            matrix[i, j] = 'X';
+                            write_sign(matrix);
+                            win_or_lose = who_win(matrix);
+                            number_moves++;
+                            if (win_or_lose == true)
+                            {
+                                Console.WriteLine("Игрок 1: победил!");
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (win_or_lose == true)
+                {
+                    break;
+                }
+                if (number_moves == 9 && win_or_lose == false)
+                {
+                    Console.WriteLine("Ничья");
+                    break;
+                }
+                char coord_p2 = 'z';
+                Random rnd = new Random();
+                int value = rnd.Next(1, 9);
+                while (true)
+                {
+                    int i = rnd.Next(1, 9);
+                    if (matrix[0, 0] == matrix[0, 1] && matrix[0, 2]!= '0')
+                    {
+                        i = 9;
+                    }
+                    if (matrix[0, 0] == matrix[0, 2] && matrix[0, 1] != '0')
+                    {
+                        i = 8;
+                    }
+                    if (matrix[0, 1] == matrix[0, 2] && matrix[0, 3] != '0')
+                    {
+                        i = 7;
+                    }
+                    if (matrix[1, 0] == matrix[1, 1] && matrix[1, 2] != '0')
+                    {
+                        i = 6;
+                    }
+                    if (matrix[1, 0] == matrix[1, 2] && matrix[1, 1] != '0')
+                    {
+                        i = 5;
+                    }
+                    if (matrix[1, 1] == matrix[1, 2] && matrix[1, 0] != '0')
+                    {
+                        i = 4;
+                    }
+                    if (matrix[2, 0] == matrix[2, 1] && matrix[2, 2] != '0')
+                    {
+                        i = 3;
+                    }
+                    if (matrix[2, 0] == matrix[2, 2] && matrix[2, 1] != '0')
+                    {
+                        i = 2;
+                    }
+                    if (matrix[2, 1] == matrix[2, 2] && matrix[2, 0] != '0')
+                    {
+                        i = 1;
+                    }
+                    if (matrix[0, 0] == matrix[1, 1] && matrix[2, 2] != '0')
+                    {
+                        i = 3;
+                    }
+                    if (matrix[0, 0] == matrix[2, 2] && matrix[1, 1] != '0')
+                    {
+                        i = 5;
+                    }
+                    if (matrix[1, 1] == matrix[2, 2] && matrix[0, 0] != '0')
+                    {
+                        i = 7;
+                    }
+                    if (matrix[2, 0] == matrix[1, 1] && matrix[0, 2] != '0')
+                    {
+                        i = 9;
+                    }
+                    if (matrix[2, 0] == matrix[0, 2] && matrix[1, 1] != '0')
+                    {
+                        i = 5;
+                    }
+                    if (matrix[1, 1] == matrix[0, 2] && matrix[2, 0] != '0')
+                    {
+                        i = 1;
+                    }
+                    coord_p2 = Convert.ToChar(i.ToString());
+                    if (coord_p2 == coord_players[0]
+                        || coord_p2 == coord_players[1]
+                        || coord_p2 == coord_players[2]
+                        || coord_p2 == coord_players[3]
+                        || coord_p2 == coord_players[4]
+                        || coord_p2 == coord_players[5]
+                        || coord_p2 == coord_players[6]
+                        || coord_p2 == coord_players[7]
+                        || coord_p2 == coord_players[8])
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }                
+                char coord_player2 = coord_p2;
+                Console.WriteLine($"Координата второго игрока {coord_player2}");
+                coord_players[index] = coord_player2;
+                index++;
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (matrix[i, j] == coord_player2)
+                        {
+                            matrix[i, j] = '0';
+                            write_sign(matrix);
+                            win_or_lose = who_win(matrix);
+                            number_moves++;
+                            if (win_or_lose == true)
+                            {
+                                Console.WriteLine("Игрок 2: победил!");
+                                break;
+                            }
+                        }
+                    }
+                }
+                bool who_win(char[,] matrix_0)
+                {
+                    if ((matrix_0[0, 0] == matrix_0[0, 1] && matrix_0[0, 1] == matrix_0[0, 2]
+                        || matrix_0[1, 0] == matrix_0[1, 1] && matrix_0[1, 1] == matrix_0[1, 2]
+                        || matrix_0[2, 0] == matrix_0[2, 1] && matrix_0[2, 1] == matrix_0[2, 2])
+                        || (matrix_0[0, 0] == matrix_0[1, 0] && matrix_0[1, 0] == matrix_0[2, 0]
+                        || matrix_0[0, 1] == matrix_0[1, 1] && matrix_0[1, 1] == matrix_0[2, 1]
+                        || matrix_0[0, 2] == matrix_0[1, 2] && matrix_0[1, 2] == matrix_0[2, 2])
+                        || (matrix_0[0, 0] == matrix_0[1, 1] && matrix_0[1, 1] == matrix_0[2, 2])
+                        || (matrix_0[0, 2] == matrix_0[1, 1] && matrix_0[1, 1] == matrix_0[2, 0]))
+                    {
+                        win_or_lose = true;
+                    }
                     return win_or_lose;
                 }
             }
