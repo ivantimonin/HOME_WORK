@@ -19,12 +19,14 @@ namespace Lesson4
         static void Main(string[] args)
         {
             Console.WriteLine("Выбор задания");
-            Tasks choise = Tasks.Task_2;
+            Tasks choise = Tasks.Task_1;
             switch (choise)
             {
-                case Tasks.Task_1: Get_my_directory();
+                case Tasks.Task_1:
+                    Get_my_directory();
                     break;
-                case Tasks.Task_2: Calculation();
+                case Tasks.Task_2:
+                    Calculation();
                     break;
                 case Tasks.Task_3:
                     break;
@@ -36,42 +38,33 @@ namespace Lesson4
         }
         static void Get_my_directory()
         {
+            string Path = (@"D:\1");  // СЮДА ВВЕСТИ ТРЕБУЕМЫЙ КАТАЛОГ.            
+            DirectoryInfo base_dir = new DirectoryInfo(Path);
+            Console.WriteLine($" * ***Название начального каталога****: {base_dir.FullName}");
+            File_name(base_dir);
+            Item_name(base_dir);
 
-            DirectoryInfo dir0 = new DirectoryInfo(@"D:\УРОКИ С#");
-            Item_name(dir0);
             void Item_name(DirectoryInfo dir)
             {
-                Console.WriteLine($"Название начального каталога: {dir.FullName}");
-                foreach (var item1 in dir.GetDirectories())
+                foreach (var separ_dir in dir.GetDirectories())
                 {
-                    Console.WriteLine($"    Название подкаталога:");
-                    Console.WriteLine($"    {item1.Name}");
-                    File_name(item1);
-                    foreach (var item2 in item1.GetDirectories())
-                    {
-                        Console.WriteLine($"        Название подкаталога:");
-                        Console.WriteLine($"        {item2.Name}");
-                        File_name(item2);
-                        Console.WriteLine();
-                        foreach (var item3 in item2.GetDirectories())
-                        {
-                            Console.WriteLine($"            Название подкаталога:");
-                            Console.WriteLine($"            {item3.Name}");
-                            File_name(item3);
-                            Console.WriteLine();
-                        }
-                    }
+                    Console.WriteLine($"    ****Название подкаталога****:");
+                    Console.WriteLine($"    {separ_dir.Name}");
+                    File_name(separ_dir);
+                    Item_name(separ_dir);
                 }
             }
-            void File_name(DirectoryInfo dir)
+
+            void File_name(DirectoryInfo file)
             {
-                foreach (var item3 in dir.GetFiles())
+                Console.WriteLine($"        ****Название файла****:");
+                foreach (var separ_file in file.GetFiles())
                 {
-                    Console.WriteLine($"-Название файла:");
-                    Console.WriteLine(item3.Name);
+                    Console.WriteLine($"        {separ_file.Name}");
                 }
             }
         }
+
         static void Calculation()
         {
             {
@@ -97,8 +90,8 @@ namespace Lesson4
                     else
                     {
                         if (sign == ("*"))
-                        {                            
-                            double a = Read_a_or_write_a();                            
+                        {
+                            double a = Read_a_or_write_a();
                             Console.WriteLine("Введите число b");
                             double b = Convert.ToDouble(Console.ReadLine());
                             double rezult = a * b;
@@ -126,7 +119,7 @@ namespace Lesson4
                         if (sign == ("-"))
                         {
                             double a = Read_a_or_write_a();
-                            Console.WriteLine("Введите число b");                            
+                            Console.WriteLine("Введите число b");
                             double b = Convert.ToDouble(Console.ReadLine());
                             double rezult = a - b;
                             Console.WriteLine($"Ответ:{a}-{b} = {rezult}");
@@ -177,7 +170,7 @@ namespace Lesson4
                         StreamWriter write_rez = new StreamWriter(@"..\rezult.txt");
                         write_rez.WriteLine(rezult);
                         write_rez.Close();
-                    }                    
+                    }
                 }
                 double Read_a_or_write_a()
                 {
@@ -186,7 +179,7 @@ namespace Lesson4
                     double rez = 0;
                     if (answer == 'Y')
                     {
-                        string path = @"..\rezult.txt";                        
+                        string path = @"..\rezult.txt";
                         if (!File.Exists(path))
                         {
                             Console.WriteLine("Сохраненного решения нет");
@@ -194,12 +187,12 @@ namespace Lesson4
                         else
                         {
                             rez = Convert.ToDouble(File.ReadAllText(path));
-                        }                       
+                        }
                     }
                     else
                     {
                         Console.WriteLine("Введите число a");
-                        rez= Convert.ToDouble(Console.ReadLine());
+                        rez = Convert.ToDouble(Console.ReadLine());
                     }
                     return rez;
 
