@@ -19,7 +19,7 @@ namespace Lesson4
         static void Main(string[] args)
         {
             Console.WriteLine("Выбор задания");
-            Tasks choise = Tasks.Task_1;
+            Tasks choise = Tasks.Task_2;
             switch (choise)
             {
                 case Tasks.Task_1: Get_my_directory();
@@ -36,33 +36,42 @@ namespace Lesson4
         }
         static void Get_my_directory()
         {
-            string Path = (@"D:\1"); // СЮДА ВВЕСТИ ТРЕБУЕМЫЙ КАТАЛОГ            
-            DirectoryInfo base_dir = new DirectoryInfo(Path);
-            Console.WriteLine($" * ***Название начального каталога****: {base_dir.FullName}");
-            File_name(base_dir);
-            Item_name(base_dir);
 
+            DirectoryInfo dir0 = new DirectoryInfo(@"D:\УРОКИ С#");
+            Item_name(dir0);
             void Item_name(DirectoryInfo dir)
-            {             
-                foreach (var separ_dir in dir.GetDirectories())
-                {                    
-                    Console.WriteLine($"    ****Название подкаталога****:");
-                    Console.WriteLine($"    {separ_dir.Name}");
-                    File_name(separ_dir);
-                    Item_name(separ_dir);                 
-                }                 
-            }
-
-            void File_name(DirectoryInfo file)
             {
-                Console.WriteLine($"        ****Название файла****:");
-                foreach (var separ_file in file.GetFiles())
+                Console.WriteLine($"Название начального каталога: {dir.FullName}");
+                foreach (var item1 in dir.GetDirectories())
                 {
-                    Console.WriteLine($"        {separ_file.Name}");
+                    Console.WriteLine($"    Название подкаталога:");
+                    Console.WriteLine($"    {item1.Name}");
+                    File_name(item1);
+                    foreach (var item2 in item1.GetDirectories())
+                    {
+                        Console.WriteLine($"        Название подкаталога:");
+                        Console.WriteLine($"        {item2.Name}");
+                        File_name(item2);
+                        Console.WriteLine();
+                        foreach (var item3 in item2.GetDirectories())
+                        {
+                            Console.WriteLine($"            Название подкаталога:");
+                            Console.WriteLine($"            {item3.Name}");
+                            File_name(item3);
+                            Console.WriteLine();
+                        }
+                    }
+                }
+            }
+            void File_name(DirectoryInfo dir)
+            {
+                foreach (var item3 in dir.GetFiles())
+                {
+                    Console.WriteLine($"-Название файла:");
+                    Console.WriteLine(item3.Name);
                 }
             }
         }
-
         static void Calculation()
         {
             {
