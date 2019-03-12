@@ -36,9 +36,9 @@ namespace Lesson4
         }
         static void Get_my_directory()
         {
-            string Path = (@"D:\УРОКИ С#");// СЮДА ВВЕСТИ ТРЕБУЕМЫЙ КАТАЛОГ            
+            string Path = (@"D:\1");// СЮДА ВВЕСТИ ТРЕБУЕМЫЙ КАТАЛОГ            
             DirectoryInfo base_dir = new DirectoryInfo(Path);
-            Console.WriteLine($"****Название начального каталога****: {base_dir.FullName}");
+            Console.WriteLine($" * ***Название начального каталога****: {base_dir.FullName}");
             File_name(base_dir);
             Item_name(base_dir);
 
