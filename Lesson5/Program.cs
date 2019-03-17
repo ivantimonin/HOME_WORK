@@ -100,13 +100,13 @@ namespace Lesson5
             {
                 Console.WriteLine();
                 Person person = new Person(Name, messages[index]);
-                person.Get_message();//взять конверт
+                person.Get_message();
 
                 Console.WriteLine("Желаете вскртыть конверт? (Y/N)");
                 string answer1 = Console.ReadLine();
                 if (answer1 == "Y")
                 {
-                    person.Open_message();//вскрыть конверт
+                    person.Open_message();
                 }
                 else
                 {
@@ -118,7 +118,7 @@ namespace Lesson5
                     string answer2 = Console.ReadLine();
                     if (answer2 == "Y")
                     {
-                        person.Read_message();//прочитать содержимое 
+                        person.Read_message();
                     }
                     else
                     {
