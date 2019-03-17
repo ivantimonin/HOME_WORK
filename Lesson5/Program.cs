@@ -8,58 +8,51 @@ namespace Lesson5
 {
     
     class Message
-    {
-        public static int count = 0;
+    {        
         
-        public static string text { get; private set; }
+        public string text { get; private set; }
         public string adress { get; private set; }
-        public static bool status_open;
+        public bool status_open { get; private set; } = false;
 
-        public Message(string Text)
+        public Message(string text, string adress)
         {
-            text = Text;
-            status_open = false;
+            this.text = text;
+            this.adress = adress;
         }
 
-        public static void Act_open()
+        public void Act_open()
         {
            status_open = true;
         }
 
-        public static void Act_read()
-        {
-            if (status_open == true)
-            {
-                Console.WriteLine("Читаем письмо...");
-                Console.WriteLine(text);
-            }
-            else
-            {
-                Console.WriteLine("Конверт закрыт! Он не Ваш.");
-            }                        
+        public void Act_read()
+        {            
+            Console.WriteLine("Читаем письмо...");
+            Console.WriteLine(text);                                
         }
     }
    
     class Person
-    {
-        
-        private string Name;       
+    {        
+        private string fact_name;
+        private Message obj_Message;        
 
-        public Person (string Name)
+        public Person (string fact_name, Message obj_Message)
         {
-            this.Name = Name;            
+            this.fact_name = fact_name;
+            this.obj_Message = obj_Message;
         }
         
         public void Get_message()
         {
-            Console.WriteLine($"{Name}, вы взяли письмо");                 
+            Console.WriteLine($"{fact_name}, вы взяли письмо оно адресовано {obj_Message.adress}у");                 
         }
 
         public void Open_message()
         {
-            if (Data_base.adress[Message.count-1] == Name)
+            if (fact_name == Convert.ToString(obj_Message.adress))
             {
-                Message.Act_open();
+                obj_Message.Act_open();
                 Console.WriteLine("Конверт открыт");
             }
             else
@@ -70,11 +63,15 @@ namespace Lesson5
 
         public void Read_message()
         {
-            
-            Message.Act_read();
-                        
-        }
-       
+            if (obj_Message.status_open == true)
+            {
+                obj_Message.Act_read();
+            }
+            else
+            {
+                Console.WriteLine("Письмо запечатано");
+            }                                    
+        }       
     }
     class Data_base
     {
@@ -92,13 +89,20 @@ namespace Lesson5
     {
         static void Main(string[] args)
         {
-            Person person = new Person("Иванов");
-            foreach (string message_text in Data_base.text)
+            string Name = "Иванов";//Входные данные           
+
+            Message [] messages = new Message [Data_base.text.Length];
+
+            for (int index = 0; index < Data_base.text.Length; index++)
+            {                
+                messages[index] = new Message(Data_base.text[index], Data_base.adress[index]);                           
+            }
+
+
+            for (int index = 0; index < Data_base.text.Length; index++)
             {
                 Console.WriteLine();
-                Message det_masseg = new Message(message_text);
-                Message.count++;//ко-во объектов
-                                
+                Person person = new Person(Name, messages[index]);
                 person.Get_message();//взять конверт
 
                 Console.WriteLine("Желаете вскртыть конверт? (Y/N)");
@@ -111,7 +115,7 @@ namespace Lesson5
                 {
                     continue;
                 }
-                if (Message.status_open == true)
+                if (messages[index].status_open == true)
                 {
                     Console.WriteLine("Желаете прочитать  конверт? (Y/N)");
                     string answer2 = Console.ReadLine();
@@ -124,10 +128,12 @@ namespace Lesson5
                         continue;
                     }
                 }
-
-                
-            }
+            }            
+            
             Console.Read();            
         }
+
+
+
     }
 }
