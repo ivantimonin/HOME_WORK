@@ -8,8 +8,7 @@ namespace Lesson5
 {
     
     class Message
-    {        
-        
+    {                
         public string text { get; private set; }
         public string adress { get; private set; }
         public bool status_open { get; private set; } = false;
@@ -89,15 +88,13 @@ namespace Lesson5
     {
         static void Main(string[] args)
         {
-            string Name = "Иванов";//Входные данные           
-
+            string Name = "Иванов";//Входные данные
             Message [] messages = new Message [Data_base.text.Length];
 
             for (int index = 0; index < Data_base.text.Length; index++)
             {                
                 messages[index] = new Message(Data_base.text[index], Data_base.adress[index]);                           
             }
-
 
             for (int index = 0; index < Data_base.text.Length; index++)
             {
@@ -129,11 +126,7 @@ namespace Lesson5
                     }
                 }
             }            
-            
             Console.Read();            
         }
-
-
-
     }
 }
