@@ -25,26 +25,40 @@ namespace Lesson5
         }
 
         public void Act_read()
-        {            
-            Console.WriteLine("Читаем письмо...");
-            Console.WriteLine(text);                                
+        {
+            if (status_open == true)
+            {
+                Console.WriteLine("Читаем письмо...");
+                Console.WriteLine(text);
+            }
+            else
+            {
+                Console.WriteLine("Письмо запечатано");
+            }                                            
         }
     }
    
     class Person
     {        
         private string fact_name;
-        private Message obj_Message;        
+        Message obj_Message;
 
-        public Person (string fact_name, Message obj_Message)
+        public Person (string fact_name)
         {
-            this.fact_name = fact_name;
-            this.obj_Message = obj_Message;
+            this.fact_name = fact_name;            
         }
         
-        public void Get_message()
+        public void Get_message(Message obj_Message)
         {
-            Console.WriteLine($"{fact_name}, вы взяли письмо оно адресовано {obj_Message.adress}у");                 
+            this.obj_Message = obj_Message;
+            if (this.obj_Message != null)
+            {
+                Console.WriteLine($"{fact_name}, вы взяли письмо оно адресовано {obj_Message.adress}у");
+            }
+            else
+            {
+                Console.WriteLine("Писем нет");
+            }                 
         }
 
         public void Open_message()
@@ -59,17 +73,9 @@ namespace Lesson5
                 Console.WriteLine("Конверт не Ваш");
             }
         }
-
         public void Read_message()
-        {
-            if (obj_Message.status_open == true)
-            {
-                obj_Message.Act_read();
-            }
-            else
-            {
-                Console.WriteLine("Письмо запечатано");
-            }                                    
+        {           
+            obj_Message.Act_read();                                         
         }       
     }
     class Data_base
@@ -99,8 +105,8 @@ namespace Lesson5
             for (int index = 0; index < Data_base.text.Length; index++)
             {
                 Console.WriteLine();
-                Person person = new Person(Name, messages[index]);
-                person.Get_message();
+                Person person = new Person(Name);
+                person.Get_message(messages[index]);
 
                 Console.WriteLine("Желаете вскртыть конверт? (Y/N)");
                 string answer1 = Console.ReadLine();
