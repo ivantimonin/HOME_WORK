@@ -15,11 +15,12 @@ namespace Lesson4
             Task_2,
             Task_3,
             Task_4,
+            Task_5
         }
         static void Main(string[] args)
         {
-            Console.WriteLine("Выбор задания");
-            Tasks choise = Tasks.Task_1;
+            
+            Tasks choise = Tasks.Task_5;
             switch (choise)
             {
                 case Tasks.Task_1:
@@ -29,9 +30,16 @@ namespace Lesson4
                     Calculation();
                     break;
                 case Tasks.Task_3:
+                    Notes();
+                    
                     break;
                 case Tasks.Task_4:
+                    Notes_star();
                     break;
+                case Tasks.Task_5:
+                    Notes_two_star();
+                    break;
+
             }
             Console.ReadLine();
 
@@ -196,11 +204,178 @@ namespace Lesson4
                     }
                     return rez;
 
-
-
                 }
             }
 
         }
-    }
+
+        static void Notes()
+        {
+            string Path = "D:\\notes.txt";//Куда сохранять заметку
+            Console.WriteLine("Введите строку для записи в файл:");
+            string text = Console.ReadLine();
+            // Запись в файл
+            FileStream fstream = new FileStream(Path, FileMode.OpenOrCreate);
+            //Преобразуем строку в байты
+            byte[] arr = System.Text.Encoding.Default.GetBytes(text);
+            fstream.Write(arr, 0, arr.Length);
+            // Закрываем поток
+            fstream.Close();
+        }
+        static void Notes_star()
+        {
+            string User_path = @"D:\Заметки\";// куда пользователь хочет сохранять заметки
+            if (!Directory.Exists(User_path))
+            {
+                Directory.CreateDirectory(User_path);                
+            }
+            if (Directory.GetFiles(User_path).Length == 0)
+            {
+                Write_to_file();
+            }
+            else
+            {
+                List_notes();                                
+                Read_file();
+            }
+
+            void Write_to_file()
+            {
+                int i = 0;
+                while (true)
+                {
+                    Console.WriteLine("Введите строку для записи в файл:");
+                    string text = Console.ReadLine();
+                    string Path = $@"{User_path}Заметка_{Convert.ToString(i)}.txt";
+                    FileStream fstream = File.OpenWrite(Path);
+                    //Преобразуем строку в байты
+                    byte[] arr = System.Text.Encoding.Default.GetBytes(text);
+                    fstream.Write(arr, 0, arr.Length);
+                    // Закрываем поток
+                    fstream.Close();
+                    i++;
+                    Console.WriteLine();
+                    Console.WriteLine("Cделать еще заметку (Y/N)");
+                    string answer = Console.ReadLine();
+                    if (answer == "N")
+                    {
+                        break;
+                    }
+                }
+            }
+            void Read_file()
+            {
+                Console.WriteLine("Введите номер файла для чтения");
+                int vibor = Convert.ToInt32(Console.ReadLine());
+                string Path = $@"{User_path}Заметка_{Convert.ToString(vibor)}.txt";
+                //Чтение из файла                
+                FileStream fstream = File.OpenRead(Path);
+                byte[] arr = new byte[fstream.Length];
+                //Считываем данные
+                fstream.Read(arr, 0, arr.Length);
+                // Декодируем из байтов в строку
+                string textFromFile = System.Text.Encoding.Default.GetString(arr);
+                // Закрываем поток
+                fstream.Close();
+                Console.WriteLine($"Текс из файла: {textFromFile}");
+                Console.Read();
+            }
+
+            void List_notes()
+            {
+                string Path = User_path;            
+                DirectoryInfo base_dir = new DirectoryInfo(Path);
+                Console.WriteLine($" * ***Название начального каталога****: {base_dir.FullName}");
+                File_name(base_dir);
+                Item_name(base_dir);
+
+                void Item_name(DirectoryInfo dir)
+                {
+                    foreach (var separ_dir in dir.GetDirectories())
+                    {
+                        Console.WriteLine($"    ****Название подкаталога****:");
+                        Console.WriteLine($"    {separ_dir.Name}");
+                        File_name(separ_dir);
+                        Item_name(separ_dir);
+                    }
+                }
+
+                void File_name(DirectoryInfo file)
+                {
+                    Console.WriteLine($"        ****Название файла****:");
+                    foreach (var separ_file in file.GetFiles())
+                    {
+                        Console.WriteLine($"        {separ_file.Name}");
+                    }
+                }
+            }            
+        }
+
+        static void Notes_two_star()
+        {
+            string User_path = @"D:\Заметки\";// куда пользователь хочет сохранять заметки
+            if (!Directory.Exists(User_path))
+            {
+                Directory.CreateDirectory(User_path);
+            }
+            Write_to_file();
+            Read_file();
+
+
+            void Write_to_file()
+            {
+                int number_note=1;
+                if (File.Exists(($"{User_path}Заметки.txt")))
+                {
+                    number_note = Number_note();
+                }             
+
+                
+                using (StreamWriter sw = new StreamWriter(($"{User_path}Заметки.txt"), true, System.Text.Encoding.Default))
+                {                    
+                    while (true)
+                    {
+                        Console.WriteLine("Введите заметку");
+                        string User_text = Console.ReadLine();
+                        sw.WriteLine($"Заметка {number_note}:{User_text}");
+                        Console.WriteLine("Продолжить вводить заметки?(Y/N)");
+                        string answer = Console.ReadLine();
+                        number_note++;
+                        if (answer == "N")
+                        {
+                            break;
+                        }
+                    }                                        
+                }
+                int Number_note()
+                {                    
+                    using (StreamReader sr = new StreamReader(($"{User_path}Заметки.txt"), System.Text.Encoding.Default))
+                    {                        
+                        string line;
+                        while ((line = sr.ReadLine()) != null)
+                        {
+                            number_note++;
+                        }
+                    }
+                    return number_note;
+                }
+            }
+            void Read_file()
+            {                
+                using (StreamReader sr = new StreamReader(($"{User_path}Заметки.txt"), System.Text.Encoding.Default))
+                {
+                    string line;
+                    Console.WriteLine("Введите номер заметки для чтения");
+                    int number = Convert.ToInt32(Console.ReadLine());
+                    for ( int i=1; (line = sr.ReadLine()) != null; i++)
+                    {
+                        if (number == i)
+                        {
+                            Console.WriteLine(line);
+                        }                 
+                    }
+                }
+            }
+        }
+    }    
 }

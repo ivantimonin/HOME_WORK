@@ -53,7 +53,7 @@ namespace Lesson5
             this.obj_Message = obj_Message;
             if (this.obj_Message != null)
             {
-                Console.WriteLine($"{fact_name}, вы взяли письмо оно адресовано {obj_Message.adress}у");
+                Console.WriteLine($"{fact_name}, вы взяли письмо оно адресовано {this.obj_Message.adress}у");
             }
             else
             {
