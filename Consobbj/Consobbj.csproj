@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{826DDA4F-163E-4238-80C8-17637DA40597}</ProjectGuid>
+    <ProjectGuid>{6D230DF0-CC40-4649-B4BD-D14C126A2429}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Lesson7</RootNamespace>
-    <AssemblyName>Lesson7</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>Consobbj</RootNamespace>
+    <AssemblyName>Consobbj</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -43,8 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Array.cs" />
-    <Compile Include="Array_action.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
