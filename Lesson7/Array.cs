@@ -38,7 +38,7 @@ namespace Lesson7
 
         public int Find_element(int element)
         {
-            for (int i = 0; i <= array.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
                 if (array[i] == element)
                 {
@@ -51,7 +51,30 @@ namespace Lesson7
 
         public void Remove_element(int element)
         {
-            throw new NotImplementedException();
+            while (true)
+            {
+                int index_of_find_element = Find_element(element);
+                if (index_of_find_element != -1)
+                {
+                    for (int i = index_of_find_element; i < array.Length - 1; i++)
+                    {
+                        array[i] = array[i + 1];
+                    }
+                    int[] new_array = new int[array.Length - 1];
+                    for (int i = 0; i < new_array.Length; i++)
+                    {
+                        new_array[i] = array[i];
+                    }
+                    array = new int[new_array.Length];
+                    array = new_array;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            
+            
         }
 
         public void Display_array()

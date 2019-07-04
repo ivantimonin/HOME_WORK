@@ -12,10 +12,17 @@ namespace Lesson7
         static void Main(string[] args)
         {
             Array obj_array = new Array();
-            obj_array.Add_element(5);
             obj_array.Add_element(10);
-            obj_array.Add_element(-45);
-            obj_array.Add_element(1154);
+            obj_array.Add_element(11);
+            obj_array.Add_element(10);
+            obj_array.Add_element(11);
+            obj_array.Add_element(12);
+            obj_array.Add_element(10);
+
+            obj_array.Remove_element(5);
+            obj_array.Remove_element(11);
+            obj_array.Remove_element(5);
+
             obj_array.Display_array();
 
             Console.ReadLine();
