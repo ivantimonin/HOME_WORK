@@ -11,6 +11,7 @@ namespace Lesson7
         void Add_element(int element);
         int Find_element(int element);
         void Remove_element(int element);
+        void Insert_element(int index, int element);
         void Display_array();
     }
 }

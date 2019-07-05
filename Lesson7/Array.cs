@@ -9,7 +9,36 @@ namespace Lesson7
     class Array : Array_action
     {
         private int count = -1;
-        private int[] array;        
+        private int[] array;
+
+        public void Insert_element(int index, int element)
+        {
+            if (count != -1 && index == array.Length)
+            {
+                Add_element(element);
+            }
+            else if (count == -1 && index == 0)
+            {
+                Add_element(element);
+            }
+            else if (count!=-1 && index<array.Length)
+            {
+                int[] temp_array = new int[array.Length + 1];
+                int i_temp=0;
+                for (int i = 0; i < array.Length; i++)
+                {
+                    if (i == index)
+                    {
+                        temp_array[i_temp] = element;
+                        i_temp++;
+                    }
+                    temp_array[i_temp] = array[i];
+                    i_temp++;                  
+                }
+                array = new int[temp_array.Length];
+                array = temp_array;
+            }
+        }
 
         public void Add_element(int element)
         {
@@ -45,8 +74,7 @@ namespace Lesson7
                     return (i);
                 }                    
             }
-            return -1;
-            
+            return -1;            
         }
 
         public void Remove_element(int element)
