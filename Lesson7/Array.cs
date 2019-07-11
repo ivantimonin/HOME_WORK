@@ -17,19 +17,99 @@ namespace Lesson7
             this.maxSize = maxSize;
             array = new int[maxSize];
         }
-        
+        public void Add_sort(int element)
+        {
+            if (maxSize < endIndexElement)
+            {
+                Console.WriteLine("Ошибка заполнения");
+            }
+            else
+            {
+                if (endIndexElement == -1)
+                {
+                    array[0] = element;
+                    endIndexElement++;
+                }
+                else
+                {
+                    for (int i = 0; i <= endIndexElement; i++)
+                    {
+                        if (array[i] <= element)
+                        {
+                            if (i == endIndexElement)
+                            {
+                                array[endIndexElement+1] = element;
+                                endIndexElement++;
+                                break;
+                            }
+                            continue;
+                        }
+                        else
+                        {
+                            for (int j = endIndexElement+1; j >i; j--)
+                            {
+                                array[j] = array[j-1];
+                            }
+                            array[i] = element;
+                            endIndexElement++;
+                            break;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        public void Find_in_sort(int element)
+        {
+            
+            if (element < array[0] || element > array[endIndexElement])
+            {
+                Console.WriteLine("Такого элемента в массиве нет");
+            }            
+            else
+            {
+                int middle;
+                int up = endIndexElement;
+                int down = 0;
+                while (true)
+                {
+                    middle = (up + down) / 2;
+                    if (element == array[middle])
+                    {
+                        Console.WriteLine($"Искомый индекс {middle}");
+                        break;
+                    }
+                    if (element > array[middle])
+                    {
+                        down = middle + 1;
+                    }
+                    if (element < array[middle])
+                    {
+                        up = middle - 1;
+                    }
+                    if (up == down)
+                    {
+                        Console.WriteLine("Такого элемента в массиве нет");
+                    }
+
+                }
+            }
+            
+        }
         // Вставка: время const (не зависит от кол-ва элементов)=> O(1) 
         public void Add(int elment)
         {
-            endIndexElement++;
+            
             if (maxSize < endIndexElement)
             {
-                Console.WriteLine("Ошибка заполнения");            
+                Console.WriteLine("Ошибка заполнения");
             }
             else
             {
                 array[endIndexElement] = elment;
-            }            
+                endIndexElement++;
+            }
         }
 
         public void Display()
@@ -55,15 +135,13 @@ namespace Lesson7
         // В худшем случае придется перемещать все элементы. O(N)
         public void Insert(int element, int index)
         {
-            if (index <= endIndexElement+1 && index>=0)
+            for (int i = endIndexElement; i >= index; i--)
             {
-                for (int i = endIndexElement; i >= index; i--)
-                {
-                    array[i+1] = array[i];                   
-                }
-                array[index] = element;
-                endIndexElement++;
-            }           
+                array[i + 1] = array[i];
+            }
+            array[index] = element;
+            endIndexElement++;
+                    
         }
 
         // В худшем случае придется перемещать почти все элементы, 

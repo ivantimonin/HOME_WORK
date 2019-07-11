@@ -12,7 +12,6 @@ namespace Lesson7
         void Insert(int element, int index);
         void Remove(int element);
         void Display();
-        void Add_sort(int element);
         int FindIndex(int element);
     }
 
