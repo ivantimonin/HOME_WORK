@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Lesson7
 {
-    interface ArrayPossibility
+    interface Isimple_array
     {
         void Add(int elment);
         void Insert(int element, int index);
         void Remove(int element);
-        void Display();
-        void Add_sort(int element);
         int FindIndex(int element);
     }
 

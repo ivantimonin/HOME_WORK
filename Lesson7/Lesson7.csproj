@@ -43,9 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Universal_array.cs" />
+    <Compile Include="Obj_array.cs" />
+    <Compile Include="Person.cs" />
+    <Compile Include="Simple_array.cs" />
     <Compile Include="Array.cs" />
-    <Compile Include="ArrayPossibility.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Isimple_array.cs" />
+    <Compile Include="Sort_array.cs" />
+    <Compile Include="Isort_array.cs" />
+    <Compile Include="App.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
