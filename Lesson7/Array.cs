@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Lesson7
 {
-    abstract class Array 
+    abstract class Array
     {
-        protected int [] array;
-        protected int endIndexElement = -1;
+        public int[] array;
+        public int endIndexElement { get; protected set; } = -1;
         protected int maxSize;
 
         public Array(int maxSize)

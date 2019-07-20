@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Universal_array.cs" />
+    <Compile Include="SortArray.cs" />
     <Compile Include="Obj_array.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Simple_array.cs" />
