@@ -8,8 +8,8 @@ namespace Lesson7
 {
     abstract class Array
     {
-        public int[] array;
-        public int endIndexElement { get; protected set; } = -1;
+        protected int[] array;
+        protected int endIndexElement = -1;
         protected int maxSize;
 
         public Array(int maxSize)

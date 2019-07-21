@@ -17,18 +17,13 @@ namespace Lesson7
 
         static void Main(string[] args)
         {
-            
+
             TypeArray variant;
             variant = TypeArray.simple_array;// sort_array /simple_array/ obj_array
             Choice(variant);
 
-            
-            
-                    
-            
-           
             Console.ReadLine();
-
+            
             void Choice(TypeArray vr)
             {
                 switch (vr)
@@ -44,37 +39,25 @@ namespace Lesson7
                         objArray_sort.Display();
                         break;
                     case TypeArray.simple_array:
-                        Simple_array objArray_simple = new Simple_array(10);
+                        Simple_array objArray_simple = new Simple_array(12);
                         objArray_simple.Add(1);
-                        objArray_simple.Add(1);
+                        objArray_simple.Add(10);
                         objArray_simple.Add(8);
                         objArray_simple.Add(3);
-                        objArray_simple.Add(8);
-                        objArray_simple.Add(8);
-                        objArray_simple.Add(11);
-                        objArray_simple.Add(2);
-                        objArray_simple.Add(4);
+
+
                         //objArray_simple.Insert(2, 3);//элемент, индекс
                         //objArray_simple.Remove(2);
                         Console.WriteLine("Исходный массив");
                         objArray_simple.Display();
-                        /*
-                        SortArray.Bubl_sort(objArray_simple.array, objArray_simple.endIndexElement);
-                        Console.WriteLine("");
-                        Console.WriteLine("Массив после пузырьковой сортировки");
-                        objArray_simple.Display();
-                        */
+                        Console.WriteLine(" ");
 
-                        /*
-                        SortArray.Select_sort(objArray_simple.array, objArray_simple.endIndexElement);
+                        //objArray_simple.Bubl_sort();
+                        //objArray_simple.Select_sort();
+                        objArray_simple.Insert_sort();
+
                         Console.WriteLine("");
-                        Console.WriteLine("Массив после сортировки методом выбора");
-                        objArray_simple.Display();
-                        break;
-                        */
-                        SortArray.Insert_sort(objArray_simple.array, objArray_simple.endIndexElement);
-                        Console.WriteLine("");
-                        Console.WriteLine("Массив после сортировки методом вставки");
+                        Console.WriteLine("Массив после сортировки");
                         objArray_simple.Display();
                         break;
 
@@ -89,14 +72,22 @@ namespace Lesson7
                         array_of_person.Add(Person_2);
                         array_of_person.Add(Person_3);
                         array_of_person.Add(Person_4);
-                        array_of_person.Add(Person_5);
-                        array_of_person.Remove("Сидоров");
-                        array_of_person.Remove("Петров");
+                        array_of_person.Add(Person_5);                        
                         array_of_person.Insert(Person_2, 0);
+                        Console.WriteLine("Исходный массив");
                         array_of_person.Display();
+                      
+                        Console.WriteLine("");
+                        Console.WriteLine("Массив после сортировки");
+                        //array_of_person.Insert_sort();
+                        //array_of_person.Select_sort();
+                        array_of_person.Bubl_sort();
+                        array_of_person.Display();
+
                         break;
                 } 
             }
+    
 
         }
     }
