@@ -39,26 +39,18 @@ namespace Lesson7
                         objArray_sort.Display();
                         break;
                     case TypeArray.simple_array:
-                        Simple_array objArray_simple = new Simple_array(12);
-                        objArray_simple.Add(1);
-                        objArray_simple.Add(10);
-                        objArray_simple.Add(8);
-                        objArray_simple.Add(3);
+                        Simple_array objArray_simple = new Simple_array(10);
+                        objArray_simple.Part_sort(6);                      
 
-
-                        //objArray_simple.Insert(2, 3);//элемент, индекс
-                        //objArray_simple.Remove(2);
                         Console.WriteLine("Исходный массив");
                         objArray_simple.Display();
                         Console.WriteLine(" ");
 
-                        //objArray_simple.Bubl_sort();
-                        //objArray_simple.Select_sort();
-                        objArray_simple.Insert_sort();
+                        objArray_simple.Bubl_sort_upgrade();
 
                         Console.WriteLine("");
                         Console.WriteLine("Массив после сортировки");
-                        objArray_simple.Display();
+                        objArray_simple.Display();                      
                         break;
 
                     case TypeArray.obj_array:
@@ -73,7 +65,7 @@ namespace Lesson7
                         array_of_person.Add(Person_3);
                         array_of_person.Add(Person_4);
                         array_of_person.Add(Person_5);                        
-                        array_of_person.Insert(Person_2, 0);
+                        array_of_person.Insert(Person_2, 0);                        
                         Console.WriteLine("Исходный массив");
                         array_of_person.Display();
                       
@@ -87,8 +79,6 @@ namespace Lesson7
                         break;
                 } 
             }
-    
-
         }
     }
 }

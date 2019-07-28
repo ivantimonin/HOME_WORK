@@ -9,21 +9,63 @@ namespace Lesson7
     class Simple_array : Array, Isimple_array
     {
         public Simple_array(int maxSize) : base(maxSize) { }
-        
-        
+
+
+        public void Rnd_array(int begin = 0, int end=100)//случайный массив
+        {
+           
+            int count_size = maxSize;
+            Random rnd = new Random();
+            while (count_size > 0)
+            {                
+                int rnd_value = rnd.Next(begin, end);
+                Add(rnd_value);
+                count_size--;                
+            }
+        }
+
+        public void Part_sort(int till_index, int begin = 0, int end = 100)//частично сорт массив
+        {
+            int count_size = maxSize;
+            Random rnd = new Random();
+            int right = end;
+            int left = begin;
+            while (count_size > 0)
+            {                
+                if (endIndexElement >= till_index)
+                {
+                    int rnd_value = rnd.Next(begin, end);
+                    Add(rnd_value);
+                    count_size--;
+                }
+                else
+                {                    
+                    int rnd_value = rnd.Next(left, right);
+                    Add(rnd_value);
+                    left = rnd_value;
+                    if (left > right)
+                    {
+                        left = right;
+                    }                   
+                    
+                    count_size--;
+                }
+            }
+        }
         // Вставка: время const (не зависит от кол-ва элементов)=> O(1) 
         public void Add(int elment)
         {
-            
-            if (maxSize < endIndexElement)
-            {
-                Console.WriteLine("Ошибка заполнения");
-            }
-            else
+            try
             {
                 endIndexElement++;
                 array[endIndexElement] = elment;
-                
+
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.WriteLine("Ошибка заполнения");
+                Console.ReadLine();
+                Environment.Exit(0);
             }
         }        
 
@@ -74,12 +116,77 @@ namespace Lesson7
         }
 
         //Перестановка и сравнение O(N^2) 
+        public void Bubl_sort_upgrade()//шейкерная сортировкка
+        {
+            int number_transposition = 0;
+            int number_compare = 0;
+
+            int i_up = endIndexElement;
+            int j_down = 0;
+
+            while(i_up>j_down)
+            {
+                
+                int right=Direct_move(j_down, i_up);
+                if (right == 0) { break; }
+                i_up= right;
+
+                int left=Revers_move(j_down, i_up);
+                if (left == 0) { break; }
+                j_down = left;                               
+            }
+
+            int Revers_move(int end, int begin)
+            {
+                int bound=0;
+                for (int j = begin; j > end; j--)
+                {
+                    number_compare++;
+                    if (array[j] < array[j-1])
+                    {
+                        Swap(ref array[j], ref array[j -1]);               
+                        
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Display();
+                        Console.WriteLine("<------");
+                        number_transposition++;
+                        bound=j;
+                    }
+                }
+                return bound;
+            }
+
+            int Direct_move(int begin, int end)
+            {
+                int bound=0;
+                for (int j = begin; j < end; j++)
+                {
+                    number_compare++;
+                    if (array[j] > array[j + 1])
+                    {
+                        Swap(ref array[j], ref array[j + 1]);                                              
+                        
+                        Console.ForegroundColor = ConsoleColor.Red; ;
+                        Display();
+                        Console.WriteLine("------>");
+                        number_transposition++;
+                        bound=j;
+                    }
+                }
+                return bound;
+            }
+            Console.ResetColor();
+            Console.WriteLine();
+            Console.WriteLine("Шейкерная");
+            Console.WriteLine($"Число перестановок={number_transposition}");
+            Console.WriteLine($"Число сравнений={number_compare}");
+        }
         public void Bubl_sort()
         {
-            int number_transposition=0;
-            int number_compare=0;
+            int number_transposition = 0;
+            int number_compare = 0;
             for (int i = endIndexElement; i > 0; i--)
-            {                
+            {
                 for (int j = 0; j < i; j++)
                 {
                     number_compare++;
