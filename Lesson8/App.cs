@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace Lesson8
 {
 
     class App
@@ -34,12 +34,12 @@ namespace ConsoleApp1
                     obj_stack.Pop();
                     obj_stack.Pop();
                     obj_stack.Push(88);
-                    obj_stack.Pop();                   
-                    var value=obj_stack.Peak();
+                    obj_stack.Pop();
+                    var value = obj_stack.Peak();
                     Console.WriteLine($"Верхний элемент стека: {value}");
 
                     bool answer = Stack<string>.Checked_write("((()()))");
-                    Console.WriteLine($"Расстановка скобок верна? {answer}");  
+                    Console.WriteLine($"Расстановка скобок верна? {answer}");
 
 
                     break;
@@ -48,6 +48,6 @@ namespace ConsoleApp1
                     break;
             }
         }
-        
+
     }
 }

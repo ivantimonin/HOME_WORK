@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace Lesson8
 {
     class Stack<T> : Structure_stack_queue<T>
     {
@@ -46,22 +46,22 @@ namespace ConsoleApp1
 
         public static bool Checked_write(string value_for_check)
         {
-            
-            Stack<char> obj_stack = new Stack <char>(value_for_check.Length);
+
+            Stack<char> obj_stack = new Stack<char>(value_for_check.Length);
             foreach (char i in value_for_check)
             {
                 if (i != '(' && i != ')')
                 {
                     throw new Exception("Попытка ввести символ отличный от скобок!");
                 }
-                else if (i=='(')
+                else if (i == '(')
                 {
                     obj_stack.Push(i);
                 }
                 else if (i == ')')
                 {
                     obj_stack.Pop();
-                }                
+                }
             }
             if (obj_stack.up_of_stack == -1)
             {
