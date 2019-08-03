@@ -12,14 +12,16 @@ namespace Lesson7
         {
             sort_array,
             simple_array,
-            obj_array
+            obj_array,
+            stack,
+            queue
         }
 
         static void Main(string[] args)
         {
 
             TypeArray variant;
-            variant = TypeArray.simple_array;// sort_array /simple_array/ obj_array
+            variant = TypeArray.queue;// sort_array /simple_array/ obj_array/stack/queue
             Choice(variant);
 
             Console.ReadLine();
@@ -75,7 +77,28 @@ namespace Lesson7
                         //array_of_person.Select_sort();
                         array_of_person.Bubl_sort();
                         array_of_person.Display();
+                        break;
 
+                    case TypeArray.stack:
+                        Stack stack_one = new Stack(10);
+                        stack_one.Push(4) ;
+                        stack_one.Push(5);
+                        stack_one.Push(10);
+                        stack_one.Push(8);
+                        
+                        stack_one.Peek();
+                        int value=stack_one.Pop();
+                        Console.WriteLine();
+                        //stack_one.Display();
+                        break;
+                    case TypeArray.queue:
+                        Queue queu = new Queue(10);
+                        queu.Push(4);
+                        queu.Push(20);
+                        queu.Push(40);
+                        int val_1 = queu.Pop();
+                        Console.WriteLine($"Первый элемент очереди {val_1}");
+                        
                         break;
                 } 
             }

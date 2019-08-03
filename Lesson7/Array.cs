@@ -25,6 +25,5 @@ namespace Lesson7
                 Console.Write($"{array[i]}   ");
             }
         }
-
     }
 }

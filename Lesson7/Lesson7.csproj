@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Queue.cs" />
+    <Compile Include="Stack.cs" />
     <Compile Include="Obj_array.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Simple_array.cs" />
