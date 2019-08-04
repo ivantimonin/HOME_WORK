@@ -14,8 +14,8 @@ namespace Lesson8
         {
             try
             {
-                up_of_stack++;
-                stack[up_of_stack] = value;
+                up_of_stack_or_quae++;
+                stack_or_queue[up_of_stack_or_quae] = value;
             }
             catch (IndexOutOfRangeException)
             {
@@ -25,23 +25,23 @@ namespace Lesson8
 
         public void Pop()
         {
-            if (up_of_stack == -1)
+            if (up_of_stack_or_quae == -1)
             {
                 throw new Exception("Попытка убрать значение из пустого стека!");
             }
             else
             {
-                up_of_stack--;
+                up_of_stack_or_quae--;
             }
         }
 
         public T Peak()
         {
-            if (up_of_stack == -1)
+            if (up_of_stack_or_quae == -1)
             {
                 throw new Exception("Попытка просмотра верхнего значения пустого стека");
             }
-            return stack[up_of_stack];
+            return stack_or_queue[up_of_stack_or_quae];
         }
 
         public static bool Checked_write(string value_for_check)
@@ -63,11 +63,29 @@ namespace Lesson8
                     obj_stack.Pop();
                 }
             }
-            if (obj_stack.up_of_stack == -1)
+            if (obj_stack.up_of_stack_or_quae == -1)
             {
                 return true;
             }
             return false;
+        }
+
+        public static string Reverse(string line)
+        {
+            Stack<Char> obj_stack = new Stack<char>(line.Length);
+            foreach (char symbol in line)
+            {
+                obj_stack.Push(symbol);
+            }
+            string revers_line = "";
+            while (obj_stack.up_of_stack_or_quae >= 0)
+            {
+                revers_line +=obj_stack.Peak();
+                obj_stack.Pop();
+            }
+            return revers_line;
+           
+
         }
     }
 }
