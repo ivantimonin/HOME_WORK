@@ -10,7 +10,7 @@ namespace Lesson8
     {
         protected T[] stack_or_queue;
         protected int up_of_stack_or_quae = -1;
-        
+
 
         public Structure_stack_queue(int capacity)
         {

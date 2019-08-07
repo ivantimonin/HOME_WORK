@@ -12,11 +12,12 @@ namespace Lesson8
         enum Variant_of_sructute
         {
             stack,
-            queue
+            queue,
+            queu_prior
         }
         static void Main(string[] args)
         {
-            Variant_of_sructute choise = Variant_of_sructute.stack;
+            Variant_of_sructute choise = Variant_of_sructute.queu_prior;
             Choise(choise);
             Console.ReadLine();
 
@@ -51,8 +52,6 @@ namespace Lesson8
                     obj_queue.Push(1);
                     obj_queue.Push(2);
                     obj_queue.Push(3);
-
-
                     obj_queue.Pop();
                     obj_queue.Push(5);
                     obj_queue.Pop();
@@ -66,19 +65,26 @@ namespace Lesson8
                     obj_queue.Push(9);
                     obj_queue.Pop();
                     obj_queue.Pop();
-
-
-
-
-
-
                     //obj_queue.Push(5);
-
-
                     //obj_queue.Pop();
                     var value_queue=obj_queue.Peak();
                     Console.WriteLine($"Первый элемент очереди: {value_queue}");
                     break;
+               case Variant_of_sructute.queu_prior:
+                    Queu_prior queu_1 = new Queu_prior(10);
+                    queu_1.Push(1);
+                    queu_1.Push(5);
+                    queu_1.Push(4);
+                    queu_1.Push(3);
+                    queu_1.Pop();
+                    queu_1.Push(2);
+                    queu_1.Pop();
+                    queu_1.Pop();
+
+                    queu_1.Display_in_console();
+                   
+                    break;
+               
             }
         }
 
