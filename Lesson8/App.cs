@@ -13,11 +13,12 @@ namespace Lesson8
         {
             stack,
             queue,
-            queu_prior
+            queu_prior,
+            deck
         }
         static void Main(string[] args)
         {
-            Variant_of_sructute choise = Variant_of_sructute.queu_prior;
+            Variant_of_sructute choise = Variant_of_sructute.deck;
             Choise(choise);
             Console.ReadLine();
 
@@ -84,7 +85,29 @@ namespace Lesson8
                     queu_1.Display_in_console();
                    
                     break;
-               
+                case Variant_of_sructute.deck:
+                    Deck obj_deck = new Deck(10);
+                    obj_deck.Push(3);
+                    obj_deck.Push(4);
+                    obj_deck.Push(7);
+                    obj_deck.Push(1);
+                    obj_deck.Pop_down();
+                    obj_deck.Push(9);
+                    obj_deck.Pop_down();
+                    obj_deck.Pop_up();
+                    obj_deck.Pop_down();
+                    obj_deck.Pop_down();
+                    obj_deck.Pop_down();
+
+
+
+
+
+                    obj_deck.Show_info();
+
+                    break;
+                    
+
             }
         }
 

@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Deck.cs" />
     <Compile Include="Queu_prior.cs" />
     <Compile Include="Queue.cs" />
     <Compile Include="Structure_stack_queue.cs" />
