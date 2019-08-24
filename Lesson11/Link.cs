@@ -6,9 +6,47 @@ using System.Threading.Tasks;
 
 namespace Lesson11
 {
-    class Link
+    class Link: IComparable<Node>
     {
-        private Node first, last;         
+        private Node first, last;
+
+        public void Sort2()
+        {
+            Node current = first;
+            int number_element=0;
+            if (first == null)
+            {
+                throw new Exception("Для сортировки нет элеметов");
+            }
+
+            while (current.next != null)
+            {
+                number_element++;
+                current = current.next;
+            }
+            
+            for (int i=number_element;i>0;i--)
+            {
+                current = first;
+                for (int j=0;j<i;j++)
+                {
+                    int value = CompareTo(current);
+                    if (value > 0)
+                    {
+                        Person tmp = current.obj_per;
+                        current.obj_per = current.next.obj_per;
+                        current.next.obj_per = tmp;
+                    }
+                    current = current.next;
+                }                
+            }
+        }        
+
+        public int CompareTo(Node current_person)// Почему тут не может быть private???
+        {
+            return current_person.obj_per.name.CompareTo(current_person.next.obj_per.name);
+        }
+
 
         public void Insert_begin2(Person person)
         {
