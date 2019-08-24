@@ -18,15 +18,24 @@ namespace lesson10
             Person person6 = new Person(125, "Михаил");
 
 
-            Link my_list = new Link(person1);
-            my_list.Add(person2);
+            Link my_list = new Link();
+           
+
+
+            //my_list.Insert_begin(person2);
+
+            //my_list.Add(person2);
+            /*
             my_list.Add(person3);
             my_list.Add(person4);
             my_list.Delete("Иван");
             my_list.Insert(person5, "Дмитрий");
             my_list.Add(person6);
             my_list.Delete("Олег");
-
+            
+            my_list.Delete();
+            my_list.Delete();
+            */
             my_list.Display();
 
             Console.ReadLine();

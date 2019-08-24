@@ -9,14 +9,38 @@ namespace lesson10
     class Link
     {
         private Node first;
+        private Node last;       
 
-        public Link(Person person)
+        public void Insert_to_begin(Person person)
         {
-            first = new Node(person);
+            Node new_element = new Node(person);
+            new_element.next = first;
+            if (first == null)
+            {
+                last = new_element;
+            }            
+            first = new_element;
         }
+
+        public void Insert_to_end(Person person)
+        {
+            Node new_element = new Node(person);                        
+            if (first == null)
+            {
+                first = new_element;                
+            }
+            last.next = new_element;
+            last = new_element;
+        }
+
+
 
         public void Delete()
         {
+            if (first == null)
+            {
+                throw new Exception("Ошибка");
+            }
             first = first.next;
         }
 
@@ -64,9 +88,7 @@ namespace lesson10
                 }
             }
             return current;
-        }
-
-      
+        }      
 
         public void Add(Person person)
         {
