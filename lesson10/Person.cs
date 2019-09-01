@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace lesson10
 {
-    class Person
+    class Person : IComparable<Person>
     {
         public int age;
         public string name;
@@ -16,5 +16,9 @@ namespace lesson10
             this.name = name;
         }
 
+        public int CompareTo(Person other)
+        {
+            return this.name.CompareTo(other.name);
+        }
     }
 }
