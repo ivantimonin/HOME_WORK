@@ -10,35 +10,39 @@ namespace Lesson12
     {
         static void Main(string[] args)
         {
-            int number = Recurs.Factorial(4);
-            //Console.WriteLine(number);
-            /*
-            int[] arr = {1,4,5,100};
-            int[] arr1 = {2,10,88,99};
-            */
+            int [] arr = Some_array(5);// кол-во элементов массива
+            Console.WriteLine("Массив до сортировки");
+            Dispalay(arr);              
+           
+            Quick_sort arr1 = new Quick_sort(arr);
+            int [] array_after_sort=arr1.Quick_sorT_arr_();
+            Console.WriteLine("Массив после сортировки");
+            Dispalay(array_after_sort);
 
-            //int index = Recurs.Binary_find(arr, 555);
-            //Console.WriteLine($"Индекс={index}");
-            //int [] new_arr=Merge.Merge_f_2(arr, arr1);
-
-            int[] arr = { 11, 4, 2, 100,45,18,2 };
-            int[] sort_arr = Merge.Merge_sort(arr);
-            //Merge.Srez_after_midl(2,arr);
-            //Merge.Srez_till_midl(2, arr);
-
-            Dispalay(sort_arr);
             Console.ReadLine();
         }
-
-        static void Dispalay(int[] arr_new)
+        static int[] Some_array(int number_element)
         {
-            foreach (int value in arr_new)
+            Random rnd = new Random();
+            int[] arr = new int[number_element];
+            for (int i = 0; i < number_element; i++)
             {
-               
-                Console.Write($"{value};");
-
+                arr[i] = rnd.Next(100);
             }
+            return arr;
         }
+
+        static void Dispalay(int [] arr)
+        {            
+            foreach (int value in arr)
+            {               
+                Console.Write($"{value};");               
+            }
+            Console.WriteLine();
+        }
+
+
+
 
 
 
