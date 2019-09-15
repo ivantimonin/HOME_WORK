@@ -59,12 +59,7 @@ namespace Lesson12
             }
             if (array_for_sort[piv] < array_for_sort[right_ptr])
             {
-                int tmp = array_for_sort[piv];
-                for (int i = piv; i > left_ptr; i--)
-                {
-                    array_for_sort[i] = array_for_sort[i - 1];
-                }
-                array_for_sort[left_ptr] = tmp;
+                Swap(piv, left_ptr, array_for_sort);
             }            
             return left_ptr;// граница
         }
